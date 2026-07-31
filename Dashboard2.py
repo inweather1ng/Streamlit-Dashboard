@@ -272,7 +272,7 @@ with tab5:
     st.pyplot(figure4)
     st.write("On a yearly basis, ouflow trends peak during rainy winters. Examples include the wet season of 2023. This serves as another accurate prediction metric for lake level as it has stable trends that match greatly with the peak rainfall events.")
 with tab6:
-        #st.header("Year-Over-Year Outflow Trends")
+        #st.header("Year-Over-Year Inflow Trends")
     inflow2 = pd.read_csv("Raw_data/inflow.csv")
     
     inflow2['VALUE'] = pd.to_numeric(inflow2['VALUE'], errors='coerce')
@@ -312,7 +312,7 @@ with tab7:
     axis5.set_xlabel("Year")
     axis5.set_ylabel("Min storage (AF)")
     st.pyplot(figure5)
-    st.write("Lake level bottoming over the past 5 years has been increasing as california has been moved out of the drought it was facing, reflected in the increase since 2021. The month of the bottomming has been january over the past 2 years, while it was reviously in the fall. THis is an unexpected trend, as usally the lowext lake level is in teh fall. It is important to note that the 2026 value will get lower as teh year goes on.")
+    st.write("Lake level bottoming over the past 5 years has been increasing as california has been moved out of the drought it was facing, reflected in the increase since 2021. The month of the bottomming has been january over the past 2 years, while it was reviously in the fall. This is an unexpected trend, as usally the lowest lake level is in the fall. It is important to note that the 2026 value will get lower as the year goes on.")
     
 with tab8:
     st.header("Precipitation averages YOY")
@@ -330,7 +330,7 @@ with tab8:
     precip_min = df_clean_precip.loc[idx_min, ['year', 'month', 'Precip']].reset_index(drop=True)
 
     st.dataframe(precip_min)
-    
+    st.write("mimimum precipitation typically ocurs in July or August, as seen in the table.")
 
  
 
