@@ -206,7 +206,7 @@ with tab1:
     ax1.legend()
 
     st.pyplot(fig)
-    st.write("Which variables had teh best correlation?")
+    st.write("Which variables had the best correlation?")
 with tab2:
     st.header("Inflow Monthly Averages")
     averages = []
@@ -237,7 +237,7 @@ with tab2:
     theax.set_ylabel("Inflow trend(CFS)")
     theax.grid(True)
     st.pyplot(figure)
-    st.write("A very Interesting trend was detected in the monthly inflow trends. The wettest month is usually January or February.\n In the graph, you can see that the highest average inflow occured in January. Since infol directly corresponds with precipitation runoff, an increase in inflow in january correlates clearly wiht the amount of precipitation in january. Following january, inflow decreeases in teh summer and fall. Due to the low snowpack, inflow does not gain rapidly in the winter until Januarysin. ")
+    st.write("A very Interesting trend was detected in the monthly inflow trends. The wettest month is usually January or February. In the graph, you can see that the highest average inflow occured in January. Since inflow directly corresponds with precipitation runoff, an increase in inflow in january correlates clearly with the amount of precipitation in january. Following january, inflow decreases in the summer and fall. Due to the low snowpack, inflow does not gain rapidly in the winter until January. ")
 with tab3:
     x=6
     
@@ -255,7 +255,7 @@ with tab3:
     theaxis.set_ylabel("the Evaporation average(AF)")
     theaxis.grid(True)
     st.pyplot(figure2)
-    st.write("Evaporation trends peak in the late summer and reahc a bottom in the winter. In the summer, teh monthly evaporation can increase up to 6 times the evaporation during winter. This trend seems directly associated wiht temperature trends, however it contains a more severe reaction to summer weather. This makes evaporation an easy prediction metric for lake level studies relating to seasonal changes.")
+    st.write("Evaporation trends peak in the late summer and reach a bottom in the winter. In the summer, the monthly evaporation can increase up to 6 times the evaporation during winter. This trend seems directly associated with temperature trends, however it is a more severe reaction to summer weather. This makes evaporation an easy prediction metric for lake level studies relating to seasonal changes.")
 with tab5:
     st.header("Year-Over-Year Outflow Trends")
     
@@ -270,7 +270,7 @@ with tab5:
     axis4.set_ylabel("Total Outflow Volume(CFS)")
     axis4.grid(True, linestyle='--', alpha=0.5)
     st.pyplot(figure4)
-    st.write("On a yearly bases, ouflow trends peak during rainy winters. Examples include the wet season of 2023. THis serves as another accurate prediction metric for lake level as it has stable trends that match gratly with the peak rainfall events.")
+    st.write("On a yearly basis, ouflow trends peak during rainy winters. Examples include the wet season of 2023. This serves as another accurate prediction metric for lake level as it has stable trends that match greatly with the peak rainfall events.")
 with tab6:
         #st.header("Year-Over-Year Outflow Trends")
     inflow2 = pd.read_csv("Raw_data/inflow.csv")
@@ -289,7 +289,7 @@ with tab6:
     axis7.set_xlabel("year")
     axis7.set_ylabel("Inflow(CFS)")
     st.pyplot(figure7)
-    st.write("Inflow values are heavily associated wiht storm runoff durign teh rainy season. Resultantly, inflow trends over a larger basis have peaked durign major rain events in teh central california area. For example, the rainy season of 2016 adn 2017 marked the gratest inflow seen in the past 20 plus years. Inflow relates well with precipitation, but doesn't mirror lake level because it does not take into account the previous winter's precipitation. It is instead a way of detectign real-time trends instead.")   
+    st.write("Inflow values are heavily associated with storm runoff during the rainy season. Resultantly, inflow trends over a larger basis have peaked during major rain events in the central California area. For example, the rainy season of 2016 and 2017 marked the greatest inflow seen in the past 20 plus years. Inflow relates well with precipitation, but doesn't mirror lake level because it does not take into account the previous winter's precipitation. It is instead a way of detecting real-time trends instead.")   
     
         #figure4, axis4 = plt.subplots(figsize=(10, 4))
         #sns.lineplot(data=inflow_yearly, x='year', y='Inflow_Result', ax=axis4, marker="s", color="green")
@@ -312,7 +312,7 @@ with tab7:
     axis5.set_xlabel("Year")
     axis5.set_ylabel("Min storage (AF)")
     st.pyplot(figure5)
-    st.write("Lake level bottoming over the past 5 years ahs bene increasing as california has been moved out of the drought it was facing, reflected in the increase since 2021. The month of teh bottommign has been january over the past 2 years, while it was reviously in the fall. THis is an unexpected trend, as usally the lowext lake level is in teh fall. It is important to note that the 2026 value will get lower as teh year goes on.")
+    st.write("Lake level bottoming over the past 5 years has been increasing as california has been moved out of the drought it was facing, reflected in the increase since 2021. The month of the bottomming has been january over the past 2 years, while it was reviously in the fall. THis is an unexpected trend, as usally the lowext lake level is in teh fall. It is important to note that the 2026 value will get lower as teh year goes on.")
     
 with tab8:
     st.header("Precipitation averages YOY")
