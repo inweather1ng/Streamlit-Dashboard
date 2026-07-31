@@ -103,7 +103,7 @@ st.download_button(
 variable_options = {
     'Snow water equivalent': 'SWE_Value',
     "Reservoir Storage(Acre-Feet)": "STORAGE AF",
-    "Inflow": "Result",
+    "Inflow": "Inflow_Result",
     "Outflow": "DC PUMP CFS",
     "Precipitation":"Precip"
 }
