@@ -148,7 +148,7 @@ with tab1:
     filtered_df = df[df['water year'] == selected]
     filtered_df[x_column] = pd.to_numeric(filtered_df[x_column], errors='coerce')
     filtered_df[y_column] = pd.to_numeric(filtered_df[y_column], errors='coerce')
-    corlrelation = filtered_df[x_column].corr(filtered_df[y_column])
+    corlrelation = {filtered_df[x_column].corr(filtered_df[y_column]):.2f}
     label = (f"With an r of {corlrelation}")
     # --- Main Page UI Layout ---
     st.title('California Water Dashboard')
@@ -199,7 +199,7 @@ with tab1:
 
     )
     
-    ax1.set_title(f"{x_select} vs. {y_select} in WY {selected}{label}", fontsize=12, fontweight='bold')
+    ax1.set_title(f"{x_select} vs. {y_select} in Water Year {selected}{label}", fontsize=12, fontweight='bold')
     ax1.set_ylabel(y_select)
     ax1.set_xlabel(x_select)
     ax1.grid(True, linestyle='--', alpha=0.6)
