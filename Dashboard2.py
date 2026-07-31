@@ -273,7 +273,7 @@ with tab5:
     st.write("On a yearly bases, ouflow trends peak during rainy winters. Examples include the wet season of 2023. THis serves as another accurate prediction metric for lake level as it has stable trends that match gratly with the peak rainfall events.")
 with tab6:
         #st.header("Year-Over-Year Outflow Trends")
-    inflow2 = pd.read_csv("C:/Users/jayan/Documents/Datascience/Raw_data/inflow.csv")
+    inflow2 = pd.read_csv("Raw_data/inflow.csv")
     
     inflow2['VALUE'] = pd.to_numeric(inflow2['VALUE'], errors='coerce')
     inflow2['Dates'] = pd.to_datetime(inflow2['OBS DATE'], format='%Y%m%d %H%M', errors='coerce').dt.date
