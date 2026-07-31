@@ -324,13 +324,13 @@ with tab8:
     axis6.set_ylabel("precipitation")
     st.pyplot(figure6)
     df_clean_precip = df.dropna(subset=['Precip'])
-    st.write("Precipitation averages reached a bottom in 2022, and then epaked in 2023, reflectign the large rainfall event.")
+    st.write("Precipitation averages reached a bottom in 2022, and then epaked in 2023, reflecting the large rainfall event.")
 # Now idxmin will not encounter all-NA groups (unless a year had zero valid records)
     idx_min = df_clean_precip.groupby("year")['Precip'].idxmin(skipna=True)
     precip_min = df_clean_precip.loc[idx_min, ['year', 'month', 'Precip']].reset_index(drop=True)
 
     st.dataframe(precip_min)
-    st.write("mimimum precipitation typically ocurs in July or August, as seen in the table.")
+    st.write("Mimimum precipitation typically ocurs in July or August, as seen in the table.")
 
  
 
