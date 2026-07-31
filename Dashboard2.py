@@ -20,7 +20,7 @@ st.set_page_config(
 @st.cache_data
 def load_data():
     # 1. Load and clean Reservoir data (2000 - 2026)
-    reservoir = pd.read_csv('/Raw_data/reservoir data.csv', thousands=',')
+    reservoir = pd.read_csv('Raw_data/reservoir data.csv', thousands=',')
     for col in ['STORAGE AF', 'DC PUMP CFS', 'LK EVAP AF']:
         if col in reservoir.columns:
             reservoir[col] = pd.to_numeric(reservoir[col].astype(str).str.replace(',', '', regex=False), errors='coerce')
@@ -32,13 +32,13 @@ def load_data():
     
     # 2. Load and clean Outflow data
 
-    precip = pd.read_csv('/Raw_data/rainfall.csv',skiprows=2)
+    precip = pd.read_csv('Raw_data/rainfall.csv',skiprows=2)
     precip['Dates'] = pd.to_datetime(precip['Date'].astype(str), format='%Y%m',errors="coerce").dt.date
     precip = precip.rename(columns={"Value": "Precip"}).drop(columns=['Date'], errors='ignore')
     change_strings = reservoir['STORAGE AF'] = reservoir['STORAGE AF'].astype(str).str.replace(',','',regex=False)
 
 
-    outflow = pd.read_csv("/Raw_data/outflow.csv", thousands=",")
+    outflow = pd.read_csv("Raw_data/outflow.csv", thousands=",")
     outflow['VALUE'] = pd.to_numeric(outflow['VALUE'].astype(str).str.replace(",", "", regex=False), errors="coerce")
     outflow['Dates'] = pd.to_datetime(outflow['OBS DATE'], format='%Y%m%d %H%M', errors="coerce").dt.date
     outflow = outflow.rename(columns={"VALUE": "Outflow"}).drop(columns=['OBS DATE'], errors='ignore')
