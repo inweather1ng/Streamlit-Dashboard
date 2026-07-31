@@ -51,7 +51,7 @@ def load_data():
     swedata = swedata.rename(columns={"VALUE": "SWE_Value"}).drop(columns=['OBS DATE'], errors='ignore')
 
     # 4. Load and clean Inflow data (⚠️ Short timeline: 2020 - 2026)
-    inflow = pd.read_csv("C:/Users/jayan/Downloads/Folsom Lake Dam and Powerplant Observed Daily Average Lake_Reservoir Inflow cfs (2025-04-01 - 2026-05-21).csv", skiprows=7)
+    inflow = pd.read_csv("Raw_data/Folsom Lake Dam and Powerplant Observed Daily Average Lake_Reservoir Inflow cfs (2025-04-01 - 2026-05-21).csv", skiprows=7)
     
     inflow.columns = inflow.columns.str.strip()
     
