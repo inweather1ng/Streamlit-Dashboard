@@ -101,11 +101,11 @@ st.download_button(
 
                    )
 variable_options = {
-    'Snow water equivalent': 'SWE_Value',
-    "Reservoir Storage(Acre-Feet)": "STORAGE AF",
-    "Inflow": "Inflow_Result",
-    "Outflow": "DC PUMP CFS",
-    "Precipitation":"Precip"
+    'Snow water equivalent (inches)': 'SWE_Value',
+    "Reservoir Storage (Acre-Feet)": "STORAGE AF",
+    "Inflow (Cubic feet/Second": "Inflow_Result",
+    "Outflow (Cubic feet/Second": "DC PUMP CFS",
+    "Precipitation (inches)":"Precip"
 }
 tab1,tab2,tab3,tab5,tab6,tab7,tab8 = st.tabs(["Analysis of all variables","Inflow Analysis","Evaporation analysis","Yearly Outflow","Yearly Inflow","Reservoir minimum and maximum","Precipitation yearly average"])
 with tab1:
@@ -149,15 +149,15 @@ with tab1:
     filtered_df[x_column] = pd.to_numeric(filtered_df[x_column], errors='coerce')
     filtered_df[y_column] = pd.to_numeric(filtered_df[y_column], errors='coerce')
     corlrelation = f"{filtered_df[x_column].corr(filtered_df[y_column]):.2f}"
-    label = (f"With an r of {corlrelation}")
+    label = (f" With an r of {corlrelation}")
     # --- Main Page UI Layout ---
-    st.title('California Water Dashboard')
+    st.title('Folsom Lake Water Dashboard')
     st.markdown(f"Viewing telemetry data for the **{selected}** water year")
     st.markdown(
     """
     <style>
     [data-testid="stMetricValue"] {
-        font-size: 18px !important;
+        font-size: 14px !important;
     }
     </style>
     """,
@@ -167,7 +167,7 @@ with tab1:
     with c1:
         max_swe = filtered_df['SWE_Value'].max()
         val_swe = f"{max_swe:.1f} in" if pd.notna(max_swe) else "No Data"
-        st.metric(label="Peak SWE", value=val_swe,)
+        st.metric(label="Peak Snow water equivalent", value=val_swe,)
     with c2:
         max_storage = filtered_df['STORAGE AF'].max()
         val_storage = f"{int(float(max_storage)):,} AF" if pd.notna(max_storage) else "No Data"
@@ -213,7 +213,7 @@ with tab2:
     months = []
     
     month = df['month'].tolist()
-    months = {1:"Jan",2:"Feb",3:"MAr",4:"Apr",5:"May",6:"Jun",7:"Jul",8:"Aug",9:"Sep",10:"Oct",11:"Nov",12:"Dec"}
+    months = {1:"Jan",2:"Feb",3:"Mar",4:"Apr",5:"May",6:"Jun",7:"Jul",8:"Aug",9:"Sep",10:"Oct",11:"Nov",12:"Dec"}
     df['month'] = pd.to_numeric(df['month'],errors="coerce").map(months)
     order=list(months.values())
     df['month'] = pd.Categorical(df['month'],categories=order,ordered=True)
@@ -233,8 +233,8 @@ with tab2:
 
     )
     theax.set_title("Inflow graph over by month")
-    theax.set_xlabel("months")
-    theax.set_ylabel("Inflow trend(CFS)")
+    theax.set_xlabel("Month")
+    theax.set_ylabel("Inflow trend (Cubic Feet/Second)")
     theax.grid(True)
     st.pyplot(figure)
     st.write("A very Interesting trend was detected in the monthly inflow trends. The wettest month is usually January or February. In the graph, you can see that the highest average inflow occured in January. Since inflow directly corresponds with precipitation runoff, an increase in inflow in january correlates clearly with the amount of precipitation in january. Following january, inflow decreases in the summer and fall. Due to the low snowpack, inflow does not gain rapidly in the winter until January. ")
@@ -245,14 +245,14 @@ with tab3:
     months = {1:"January",2:"February",3:"MArch",4:"April",5:"May",6:"June",7:"July",8:"August",9:"September",10:"October",11:"November",12:"December"}
     monthly_averages=df.groupby('month')['Inflow_Result'].mean().reset_index()
     monthly_averages.rename(columns={'Inflow_Result': 'Average Inflow'}, inplace=True)
-    outflow_monthly = df.groupby('month')['LK EVAP AF'].mean().reset_index()
-    outflow_monthly.rename(columns={'LK EVAP AF':'Average Evaporation'},inplace=True)
+    evap_monthly = df.groupby('month')['LK EVAP AF'].mean().reset_index()
+    evap_monthly.rename(columns={'LK EVAP AF':'Average Evaporation'},inplace=True)
     figure2,theaxis=plt.subplots()
     st.subheader("evaporation trends")
     sns.lineplot(data=outflow_monthly,x="month",y="Average Evaporation",ax=theaxis,label="Outflow average")
     theaxis.set_title("Evaporation by monthly averages")
     theaxis.set_xlabel("Month")
-    theaxis.set_ylabel("the Evaporation average(AF)")
+    theaxis.set_ylabel("Average Evaporation (Acre-Feet)")
     theaxis.grid(True)
     st.pyplot(figure2)
     st.write("Evaporation trends peak in the late summer and reach a bottom in the winter. In the summer, the monthly evaporation can increase up to 6 times the evaporation during winter. This trend seems directly associated with temperature trends, however it is a more severe reaction to summer weather. This makes evaporation an easy prediction metric for lake level studies relating to seasonal changes.")
@@ -267,7 +267,7 @@ with tab5:
     sns.lineplot(data=outflow_yearly, x='year', y='Outflow', ax=axis4, marker="s", color="green")
     axis4.set_title("Total Outflow Trends YOY (2021 - 2026)")
     axis4.set_xlabel("Year")
-    axis4.set_ylabel("Total Outflow Volume(CFS)")
+    axis4.set_ylabel("Total Outflow Volume(Cubic feet/Second)")
     axis4.grid(True, linestyle='--', alpha=0.5)
     st.pyplot(figure4)
     st.write("On a yearly basis, ouflow trends peak during rainy winters. Examples include the wet season of 2023. This serves as another accurate prediction metric for lake level as it has stable trends that match greatly with the peak rainfall events.")
@@ -287,7 +287,7 @@ with tab6:
     sns.lineplot(data=inflow_yearly,x='theyear',y='Inflow_Value')
     axis7.set_title("Inflow trends over year")
     axis7.set_xlabel("year")
-    axis7.set_ylabel("Inflow(CFS)")
+    axis7.set_ylabel("Inflow (Cubic Feet/Second)")
     st.pyplot(figure7)
     st.write("Inflow values are heavily associated with storm runoff during the rainy season. Resultantly, inflow trends over a larger basis have peaked during major rain events in the central California area. For example, the rainy season of 2016 and 2017 marked the greatest inflow seen in the past 20 plus years. Inflow relates well with precipitation, but doesn't mirror lake level because it does not take into account the previous winter's precipitation. It is instead a way of detecting real-time trends instead.")   
     
@@ -310,7 +310,7 @@ with tab7:
     sns.lineplot(data=reservoir_min,x='year',y='STORAGE AF',ax=axis5)
     axis5.set_title("Reservoir level bottoming")
     axis5.set_xlabel("Year")
-    axis5.set_ylabel("Min storage (AF)")
+    axis5.set_ylabel("Min storage (Acre-Feet)")
     st.pyplot(figure5)
     st.write("Lake level bottoming over the past 5 years has been increasing as california has been moved out of the drought it was facing, reflected in the increase since 2021. The month of the bottomming has been january over the past 2 years, while it was reviously in the fall. This is an unexpected trend, as usally the lowest lake level is in the fall. It is important to note that the 2026 value will get lower as the year goes on.")
     
