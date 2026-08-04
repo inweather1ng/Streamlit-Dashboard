@@ -8,7 +8,7 @@ from datetime import date
 
 # 1. Page Configuration (Must be first)
 st.set_page_config(
-    page_title="California Weather Dashboard",
+    page_title="Folsom Lake Dashboard",
     page_icon="💧",
     layout="wide"
     
@@ -148,7 +148,7 @@ with tab1:
     filtered_df = df[df['water year'] == selected]
     filtered_df[x_column] = pd.to_numeric(filtered_df[x_column], errors='coerce')
     filtered_df[y_column] = pd.to_numeric(filtered_df[y_column], errors='coerce')
-    corlrelation = {filtered_df[x_column].corr(filtered_df[y_column]):.2f}
+    corlrelation = f"{filtered_df[x_column].corr(filtered_df[y_column]):.2f}"
     label = (f"With an r of {corlrelation}")
     # --- Main Page UI Layout ---
     st.title('California Water Dashboard')
@@ -213,7 +213,7 @@ with tab2:
     months = []
     
     month = df['month'].tolist()
-    months = {1:"January",2:"February",3:"MArch",4:"April",5:"May",6:"June",7:"July",8:"August",9:"September",10:"October",11:"November",12:"December"}
+    months = {1:"Jan",2:"Feb",3:"MAr",4:"Apr",5:"May",6:"Jun",7:"Jul",8:"Aug",9:"Sep",10:"Oct",11:"Nov",12:"Dec"}
     df['month'] = pd.to_numeric(df['month'],errors="coerce").map(months)
     order=list(months.values())
     df['month'] = pd.Categorical(df['month'],categories=order,ordered=True)
