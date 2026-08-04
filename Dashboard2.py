@@ -198,7 +198,9 @@ with tab1:
         line_kws={'color': 'red', 'linewidth': 2, 'label': 'trendline'},
 
     )
-    
+    ax1.xaxis.set_major_formatter(ticker.StrMethodFormatter("{x:,.0f}"))
+    ax1.yaxis.set_major_formatter(ticker.StrMethodFormatter("{x:,.0f}"))
+                                
     ax1.set_title(f"{x_select} vs. {y_select} in Water Year {selected}{label}", fontsize=12, fontweight='bold')
     ax1.set_ylabel(y_select)
     ax1.set_xlabel(x_select)
@@ -232,6 +234,8 @@ with tab2:
 
 
     )
+    theax.xaxis.set_major_formatter(ticker.StrMethodFormatter("{x:,.0f}"))
+    theax.yaxis.set_major_formatter(ticker.StrMethodFormatter("{x:,.0f}"))
     theax.set_title("Inflow graph over by month")
     theax.set_xlabel("Month")
     theax.set_ylabel("Inflow trend (Cubic Feet/Second)")
@@ -254,6 +258,8 @@ with tab3:
     theaxis.set_xlabel("Month")
     theaxis.set_ylabel("Average Evaporation (Acre-Feet)")
     theaxis.grid(True)
+    theaxis.xaxis.set_major_formatter(ticker.StrMethodFormatter("{x:,.0f}"))
+    theaxis.yaxis.set_major_formatter(ticker.StrMethodFormatter("{x:,.0f}"))
     st.pyplot(figure2)
     st.write("Evaporation trends peak in the late summer and reach a bottom in the winter. In the summer, the monthly evaporation can increase up to 6 times the evaporation during winter. This trend seems directly associated with temperature trends, however it is a more severe reaction to summer weather. This makes evaporation an easy prediction metric for lake level studies relating to seasonal changes.")
 with tab5:
@@ -269,6 +275,8 @@ with tab5:
     axis4.set_xlabel("Year")
     axis4.set_ylabel("Total Outflow Volume(Cubic feet/Second)")
     axis4.grid(True, linestyle='--', alpha=0.5)
+    axis4.xaxis.set_major_formatter(ticker.StrMethodFormatter("{x:,.0f}"))
+    axis4.yaxis.set_major_formatter(ticker.StrMethodFormatter("{x:,.0f}"))
     st.pyplot(figure4)
     st.write("On a yearly basis, ouflow trends peak during rainy winters. Examples include the wet season of 2023. This serves as another accurate prediction metric for lake level as it has stable trends that match greatly with the peak rainfall events.")
 with tab6:
@@ -288,6 +296,8 @@ with tab6:
     axis7.set_title("Inflow trends over year")
     axis7.set_xlabel("year")
     axis7.set_ylabel("Inflow (Cubic Feet/Second)")
+    axis7.xaxis.set_major_formatter(ticker.StrMethodFormatter("{x:,.0f}"))
+    axis7.yaxis.set_major_formatter(ticker.StrMethodFormatter("{x:,.0f}"))
     st.pyplot(figure7)
     st.write("Inflow values are heavily associated with storm runoff during the rainy season. Resultantly, inflow trends over a larger basis have peaked during major rain events in the central California area. For example, the rainy season of 2016 and 2017 marked the greatest inflow seen in the past 20 plus years. Inflow relates well with precipitation, but doesn't mirror lake level because it does not take into account the previous winter's precipitation. It is instead a way of detecting real-time trends instead.")   
     
@@ -311,6 +321,8 @@ with tab7:
     axis5.set_title("Reservoir level bottoming")
     axis5.set_xlabel("Year")
     axis5.set_ylabel("Min storage (Acre-Feet)")
+    axis5.xaxis.set_major_formatter(ticker.StrMethodFormatter("{x:,.0f}"))
+    axis5.yaxis.set_major_formatter(ticker.StrMethodFormatter("{x:,.0f}"))
     st.pyplot(figure5)
     st.write("Lake level bottoming over the past 5 years has been increasing as california has been moved out of the drought it was facing, reflected in the increase since 2021. The month of the bottomming has been january over the past 2 years, while it was reviously in the fall. This is an unexpected trend, as usally the lowest lake level is in the fall. It is important to note that the 2026 value will get lower as the year goes on.")
     
@@ -322,6 +334,8 @@ with tab8:
     axis6.set_title("precipitation averages over time")
     axis6.set_xlabel("Precipitation average(inches)")
     axis6.set_ylabel("precipitation")
+    axis6.xaxis.set_major_formatter(ticker.StrMethodFormatter("{x:,.0f}"))
+    axis6.yaxis.set_major_formatter(ticker.StrMethodFormatter("{x:,.0f}"))
     st.pyplot(figure6)
     df_clean_precip = df.dropna(subset=['Precip'])
     st.write("Precipitation averages reached a bottom in 2022, and then epaked in 2023, reflecting the large rainfall event.")
