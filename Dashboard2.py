@@ -19,6 +19,10 @@ st.set_page_config(
 
 @st.cache_data
 def load_data():
+    
+
+
+    
     # 1. Load and clean Reservoir data (2000 - 2026)
     reservoir = pd.read_csv('Raw_data/reservoir data.csv', thousands=',')
     for col in ['STORAGE AF', 'DC PUMP CFS', 'LK EVAP AF']:
