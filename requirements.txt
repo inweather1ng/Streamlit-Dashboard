@@ -1,3 +1,4 @@
 streamlit
 seaborn
 xarray
+netcd4
